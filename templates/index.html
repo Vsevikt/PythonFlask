@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FruitMarket</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #f5f7f5;
+            color: #173b2b;
+        }
+
+        header {
+            background: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h2 {
+            color: #168044;
+            margin: 0;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            margin: 10px;
+        }
+
+        .banner {
+            background: #e3f1d5;
+            padding: 35px;
+            margin: 15px;
+            border-radius: 10px;
+        }
+
+        .banner h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .container {
+            display: flex;
+            gap: 20px;
+            padding: 15px;
+        }
+
+        aside {
+            background: white;
+            padding: 20px;
+            width: 200px;
+            border-radius: 10px;
+        }
+
+        aside ul {
+            padding-left: 20px;
+        }
+
+        aside li {
+            margin-bottom: 12px;
+        }
+
+        .products {
+            flex: 1;
+        }
+
+        .product-list {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+
+        .product {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .product .emoji {
+            font-size: 65px;
+        }
+
+        .product h3 {
+            margin: 10px 0;
+        }
+
+        .price {
+            font-weight: bold;
+        }
+
+        button {
+            background: #168044;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #106333;
+        }
+
+        @media (max-width: 700px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .product-list {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            nav {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h2>🍋 FruitMarket</h2>
+
+        <nav>
+            <a href="#">Головна</a>
+            <a href="#categories">Категорії</a>
+            <a href="#products">Каталог</a>
+            <a href="#contacts">Контакти</a>
+        </nav>
+    </header>
+
+    <section class="banner">
+        <h1>Натуральні фрукти з усього світу</h1>
+        <p>Свіжі, соковиті та корисні фрукти для здорового життя!</p>
+        <button onclick="location.href='#products'">
+            Перейти до каталогу
+        </button>
+    </section>
+
+    <div class="container">
+
+        <aside id="categories">
+            <h3>Категорії</h3>
+            <ul>
+                <li>🍏 Всі фрукти</li>
+                <li>🍓 Ягоди</li>
+                <li>🍊 Цитрусові</li>
+                <li>🍒 Кісточкові</li>
+                <li>🍌 Тропічні</li>
+                <li>🍎 Яблука та груші</li>
+            </ul>
+        </aside>
+
+        <section class="products" id="products">
+            <h2>Наші фрукти</h2>
+
+            <div class="product-list">
+
+                <div class="product">
+                    <div class="emoji">🍌</div>
+                    <h3>Банани</h3>
+                    <p class="price">45 грн / кг</p>
+                    <button onclick="alert('Банани додано до кошика!')">
+                        До кошика
+                    </button>
+                </div>
+
+                <div class="product">
+                    <div class="emoji">🍎</div>
+                    <h3>Яблука</h3>
+                    <p class="price">35 грн / кг</p>
+                    <button onclick="alert('Яблука додано до кошика!')">
+                        До кошика
+                    </button>
+                </div>
+
+                <div class="product">
+                    <div class="emoji">🍊</div>
+                    <h3>Апельсини</h3>
+                    <p class="price">55 грн / кг</p>
+                    <button onclick="alert('Апельсини додано до кошика!')">
+                        До кошика
+                    </button>
+                </div>
+
+                <div class="product">
+                    <div class="emoji">🍓</div>
+                    <h3>Полуниця</h3>
+                    <p class="price">120 грн / кг</p>
+                    <button onclick="alert('Полуницю додано до кошика!')">
+                        До кошика
+                    </button>
+                </div>
+
+                <div class="product">
+                    <div class="emoji">🫐</div>
+                    <h3>Чорниця</h3>
+                    <p class="price">150 грн / кг</p>
+                    <button onclick="alert('Чорницю додано до кошика!')">
+                        До кошика
+                    </button>
+                </div>
+
+                <div class="product">
+                    <div class="emoji">🍇</div>
+                    <h3>Виноград</h3>
+                    <p class="price">95 грн / кг</p>
+                    <button onclick="alert('Виноград додано до кошика!')">
+                        До кошика
+                    </button>
+                </div>
+
+                <div class="product">
+                    <div class="emoji">🥝</div>
+                    <h3>Ківі</h3>
+                    <p class="price">80 грн / кг</p>
+                    <button onclick="alert('Ківі додано до кошика!')">
+                        До кошика
+                    </button>
+                </div>
+
+                <div class="product">
+                    <div class="emoji">🥭</div>
+                    <h3>Манго</h3>
+                    <p class="price">140 грн / кг</p>
+                    <button onclick="alert('Манго додано до кошика!')">
+                        До кошика
+                    </button>
+                </div>
+
+            </div>
+        </section>
+    </div>
+
+    <footer id="contacts" style="text-align:center; padding:20px;">
+        © 2026 FruitMarket
+    </footer>
+
+</body>
+</html>
+
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>{%if title%}{{ title }} {% else %} Default Page {%endif%}</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--    <h2>Python Framework - Flask</h2>-->
+<!--    <ul>-->
+<!--        {% for el in menu %}-->
+<!--        <li>{{el}}</li>-->
+<!--        {%endfor%}-->
+<!--    </ul>-->
+<!--</body>-->
+<!--</html>-->
