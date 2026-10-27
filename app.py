@@ -1,17 +1,15 @@
-
 from flask import Flask, render_template
 
 app = Flask(__name__)
 
-categories = [
-    "Всі фрукти",
-    "Ягоди",
-    "Цитрусові",
-    "Кісточкові",
-    "Тропічні",
-    "Яблука та груші"
-]
-
+categories = {
+    "🍎": "Всі фрукти",
+    "🍓": "Ягоди",
+    "🍊": "Цитрусові",
+    "🍑": "Кісточкові",
+    "🥭": "Тропічні",
+    "🍐": "Яблука та груші"
+}
 products = [
     {
         "name": "Банани",
@@ -57,11 +55,7 @@ products = [
 
 @app.route("/")
 def index():
-    return render_template(
-        "index.html",
-        categories=categories,
-        products=products
-    )
+    return render_template("index.html", categories=categories, products=products)
 
 if __name__ == "__main__":
     app.run(debug=True)

@@ -2,130 +2,678 @@
 <html lang="uk">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FruitMarket</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f7f9f5">
+
+    <title>FruitMarket — свіжі фрукти</title>
+    <meta name="description" content="Купуйте свіжі фрукти онлайн за вигідними цінами у FruitMarket.">
+
+    <link rel="preconnect" href="https://images.unsplash.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
     <style>
+        :root {
+            --green: #218653;
+            --green-dark: #17673e;
+            --green-light: #eaf5e9;
+            --text: #203b2c;
+            --muted: #7c897f;
+            --background: #f7f9f5;
+            --white: #ffffff;
+            --border: #e8ede7;
+            --radius: 18px;
+            --shadow: 0 6px 24px rgba(28, 65, 41, .055);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 90px;
+        }
+
         body {
-            font-family: Arial, sans-serif;
             margin: 0;
-            background: #f5f7f5;
-            color: #173b2b;
+            background: var(--background);
+            color: var(--text);
+            font-family: "Inter", Arial, sans-serif;
+            font-size: 14px;
+            line-height: 1.6;
         }
 
-        header {
-            background: white;
-            padding: 20px;
+        button, input, select {
+            font: inherit;
+        }
+
+        button, a, select {
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .topbar {
+            position: sticky;
+            top: 0;
+            z-index: 20;
+            background: rgba(255, 255, 255, .94);
+            border-bottom: 1px solid var(--border);
+            backdrop-filter: blur(12px);
+        }
+
+        .header-inner {
+            width: min(1320px, 100%);
+            min-height: 76px;
+            margin: auto;
+            padding: 14px 28px;
             display: flex;
-            justify-content: space-between;
             align-items: center;
+            justify-content: space-between;
+            gap: 24px;
         }
 
-        header h2 {
-            margin: 0;
-            color: #168044;
-        }
-
-        .banner {
-            margin: 20px;
-            padding: 30px;
-            background: #e3f1d5;
-            border-radius: 10px;
-        }
-
-        .container {
-            display: flex;
-            gap: 20px;
-            padding: 20px;
-        }
-
-        aside, .product {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-        }
-
-        aside {
-            width: 200px;
+        .brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
             flex-shrink: 0;
         }
 
-        aside li {
-            margin-bottom: 12px;
+        .brand-mark {
+            display: grid;
+            place-items: center;
+            width: 42px;
+            height: 42px;
+            border-radius: 14px;
+            background: var(--green-light);
+            color: var(--green);
+            font-size: 24px;
+            font-weight: 800;
         }
 
-        .products {
-            flex: 1;
+        .brand-name {
+            font-size: 21px;
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+
+        .brand-name span {
+            color: var(--green);
+        }
+
+        .header-nav {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+            color: #5c6d60;
+            font-weight: 600;
+        }
+
+        .header-nav a:hover {
+            color: var(--green);
+        }
+
+        .cart-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 11px 16px;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            background: white;
+            color: var(--text);
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        .cart-count {
+            display: grid;
+            place-items: center;
+            min-width: 24px;
+            height: 24px;
+            padding: 0 6px;
+            border-radius: 8px;
+            background: var(--green);
+            color: white;
+            font-size: 12px;
+        }
+
+        .page {
+            width: min(1320px, 100%);
+            margin: auto;
+            padding: 28px;
+        }
+
+        .hero {
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            min-height: 280px;
+            padding: 42px 48px;
+            border-radius: 24px;
+            background:
+                linear-gradient(90deg,
+                    rgba(235, 246, 224, .98) 0%,
+                    rgba(235, 246, 224, .94) 43%,
+                    rgba(235, 246, 224, .15) 100%),
+                url("https://images.unsplash.com/photo-1610832958506-aa56368176cf?auto=format&fit=crop&w=1400&q=80")
+                center 52% / cover no-repeat;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 540px;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 7px 12px;
+            border-radius: 30px;
+            background: rgba(255, 255, 255, .8);
+            color: var(--green-dark);
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: .3px;
+        }
+
+        .hero h1 {
+            max-width: 500px;
+            margin: 18px 0 12px;
+            font-size: clamp(30px, 4vw, 46px);
+            line-height: 1.12;
+            letter-spacing: -1.8px;
+        }
+
+        .hero p {
+            max-width: 400px;
+            margin: 0 0 24px;
+            color: #536b58;
+            font-size: 15px;
+            line-height: 1.8;
+        }
+
+        .primary-button {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 46px;
+            padding: 0 20px;
+            border: none;
+            border-radius: 12px;
+            background: var(--green);
+            color: white;
+            font-weight: 700;
+            transition: background .2s, transform .2s;
+        }
+
+        .primary-button:hover {
+            background: var(--green-dark);
+            transform: translateY(-1px);
+        }
+
+        .benefits {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 16px;
+            margin: 22px 0 34px;
+        }
+
+        .benefit {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+            padding: 17px;
+            border: 1px solid var(--border);
+            border-radius: 15px;
+            background: white;
+        }
+
+        .benefit-icon {
+            display: grid;
+            place-items: center;
+            width: 42px;
+            height: 42px;
+            flex-shrink: 0;
+            border-radius: 13px;
+            background: var(--green-light);
+            color: var(--green);
+            font-size: 19px;
+        }
+
+        .benefit strong {
+            display: block;
+            margin-bottom: 2px;
+            font-size: 13px;
+        }
+
+        .benefit small {
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        .catalog {
+            display: grid;
+            grid-template-columns: 230px minmax(0, 1fr);
+            align-items: start;
+            gap: 24px;
+            margin-top: 20px;
+        }
+
+        .sidebar {
+            padding: 22px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            background: white;
+        }
+
+        .sidebar h2 {
+            margin: 0 0 18px;
+            font-size: 17px;
+        }
+
+        .category-list {
+            display: grid;
+            gap: 5px;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .category-button {
+            width: 100%;
+            padding: 11px 12px;
+            border: none;
+            border-radius: 10px;
+            background: transparent;
+            color: #617064;
+            text-align: left;
+            font-weight: 500;
+            transition: .2s;
+        }
+
+        .category-button:hover,
+        .category-button.active {
+            background: var(--green-light);
+            color: var(--green-dark);
+            font-weight: 700;
+        }
+
+        .sidebar-divider {
+            height: 1px;
+            margin: 22px 0;
+            background: var(--border);
+        }
+
+        .sidebar-note {
+            padding: 14px;
+            border-radius: 12px;
+            background: #f4f8f0;
+            color: #617064;
+            font-size: 12px;
+            line-height: 1.7;
+        }
+
+        .catalog-main {
             min-width: 0;
+        }
+
+        .catalog-heading {
+            display: flex;
+            align-items: end;
+            justify-content: space-between;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .catalog-heading h2 {
+            margin: 0;
+            font-size: 27px;
+            letter-spacing: -.7px;
+        }
+
+        .catalog-heading p {
+            margin: 5px 0 0;
+            color: var(--muted);
+        }
+
+        .catalog-tools {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .search-input,
+        .sort-select {
+            min-height: 43px;
+            padding: 0 13px;
+            border: 1px solid var(--border);
+            border-radius: 11px;
+            outline: none;
+            background: white;
+            color: var(--text);
+        }
+
+        .search-input {
+            width: 200px;
+        }
+
+        .search-input:focus,
+        .sort-select:focus {
+            border-color: var(--green);
+            box-shadow: 0 0 0 3px rgba(33, 134, 83, .09);
         }
 
         .product-list {
             display: grid;
             grid-template-columns: repeat(4, minmax(0, 1fr));
-            gap: 15px;
+            gap: 17px;
         }
 
         .product {
-            text-align: center;
-            box-shadow: 0 2px 8px #173b2b10;
+            min-width: 0;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            border-radius: 17px;
+            background: white;
+            transition: transform .2s, box-shadow .2s;
+        }
+
+        .product:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+
+        .product-image-wrap {
+            position: relative;
+            overflow: hidden;
+            padding: 10px;
+            background: #f8faf6;
         }
 
         .product img {
             display: block;
             width: 100%;
-            height: 150px;
+            height: 155px;
+            border-radius: 11px;
             object-fit: cover;
-            border-radius: 8px;
-            background: #f0f5eb;
+            background: #edf2e9;
+        }
+
+        .product-info {
+            padding: 14px;
+        }
+
+        .product-category {
+            margin-bottom: 5px;
+            color: var(--muted);
+            font-size: 11px;
         }
 
         .product h3 {
-            margin: 15px 0 10px;
+            min-height: 24px;
+            margin: 0 0 9px;
+            font-size: 15px;
+            font-weight: 700;
         }
 
-        button {
-            background: #168044;
-            color: white;
+        .product-bottom {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            margin-top: 13px;
+        }
+
+        .price {
+            color: var(--green-dark);
+            font-size: 17px;
+            font-weight: 800;
+            white-space: nowrap;
+        }
+
+        .price small {
+            color: var(--muted);
+            font-size: 11px;
+            font-weight: 500;
+        }
+
+        .add-button {
+            display: grid;
+            place-items: center;
+            width: 38px;
+            height: 38px;
+            flex-shrink: 0;
             border: none;
-            padding: 10px 14px;
-            border-radius: 5px;
-            cursor: pointer;
+            border-radius: 11px;
+            background: var(--green-light);
+            color: var(--green-dark);
+            font-size: 23px;
+            font-weight: 500;
+            transition: .2s;
         }
 
-        button:hover {
-            background: #106536;
+        .add-button:hover {
+            background: var(--green);
+            color: white;
         }
 
-        @media (max-width: 1000px) {
+        .empty-state {
+            display: none;
+            padding: 50px 20px;
+            border: 1px dashed #cbd8cc;
+            border-radius: 16px;
+            background: white;
+            color: var(--muted);
+            text-align: center;
+        }
+
+        .toast {
+            position: fixed;
+            right: 24px;
+            bottom: 24px;
+            z-index: 50;
+            max-width: calc(100vw - 32px);
+            padding: 14px 20px;
+            border-radius: 12px;
+            background: #173b2b;
+            color: white;
+            box-shadow: var(--shadow);
+            opacity: 0;
+            transform: translateY(12px);
+            pointer-events: none;
+            transition: .25s;
+        }
+
+        .toast.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        footer {
+            margin-top: 48px;
+            padding: 28px 12px;
+            border-top: 1px solid var(--border);
+            color: var(--muted);
+            text-align: center;
+            font-size: 12px;
+        }
+
+        @media (max-width: 1150px) {
             .product-list {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+
+            .catalog {
+                grid-template-columns: 205px minmax(0, 1fr);
+            }
+
+            .header-nav {
+                gap: 16px;
             }
         }
 
-        @media (max-width: 700px) {
-            .container {
-                flex-direction: column;
+        @media (max-width: 850px) {
+            .page {
+                padding: 18px;
             }
 
-            .product-list {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
+            .header-inner {
+                padding: 12px 18px;
             }
 
-            aside {
+            .header-nav {
+                display: none;
+            }
+
+            .catalog {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                padding: 16px;
+            }
+
+            .category-list {
+                display: flex;
+                flex-wrap: wrap;
+            }
+
+            .category-button {
                 width: auto;
+                padding: 9px 12px;
             }
 
-            .banner {
-                margin: 12px;
-                padding: 22px;
+            .sidebar-divider,
+            .sidebar-note {
+                display: none;
             }
 
-            .product {
+            .product-list {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 600px) {
+            .page {
                 padding: 12px;
             }
 
+            .header-inner {
+                min-height: 66px;
+                padding: 10px 12px;
+                gap: 8px;
+            }
+
+            .brand-mark {
+                width: 36px;
+                height: 36px;
+            }
+
+            .brand-name {
+                font-size: 18px;
+            }
+
+            .cart-button {
+                padding: 9px 10px;
+                font-size: 12px;
+            }
+
+            .hero {
+                min-height: 290px;
+                padding: 28px 22px;
+                background-position: center;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .hero p {
+                font-size: 13px;
+            }
+
+            .benefits {
+                grid-template-columns: 1fr;
+                gap: 9px;
+                margin: 16px 0 28px;
+            }
+
+            .benefit {
+                padding: 12px;
+            }
+
+            .benefit-icon {
+                width: 36px;
+                height: 36px;
+            }
+
+            .catalog-heading {
+                align-items: stretch;
+                flex-direction: column;
+            }
+
+            .catalog-heading h2 {
+                font-size: 24px;
+            }
+
+            .catalog-tools {
+                display: grid;
+                grid-template-columns: 1fr;
+            }
+
+            .search-input {
+                width: 100%;
+            }
+
+            .product-list {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 10px;
+            }
+
+            .product-image-wrap {
+                padding: 7px;
+            }
+
             .product img {
-                height: 130px;
+                height: 125px;
+            }
+
+            .product-info {
+                padding: 10px;
+            }
+
+            .product h3 {
+                font-size: 14px;
+            }
+
+            .price {
+                font-size: 15px;
+            }
+
+            .add-button {
+                width: 34px;
+                height: 34px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                scroll-behavior: auto !important;
+                transition-duration: .01ms !important;
             }
         }
     </style>
@@ -133,77 +681,286 @@
 
 <body>
 
-<header>
-    <h2>FruitMarket</h2>
-    <span>Кошик: <strong id="cart-count">0</strong></span>
+<header class="topbar">
+    <div class="header-inner">
+        <a class="brand" href="/" aria-label="FruitMarket — головна">
+            <span class="brand-mark" aria-hidden="true">F</span>
+            <span class="brand-name">Fruit<span>Market</span></span>
+        </a>
+
+        <nav class="header-nav" aria-label="Головна навігація">
+            <a href="/">Головна</a>
+            <a href="#categories">Категорії</a>
+            <a href="#products">Каталог</a>
+        </nav>
+
+        <button class="cart-button" type="button"
+                aria-label="Кошик, товарів: 0"
+                onclick="showCart()">
+            Кошик
+            <span class="cart-count" id="cart-count">0</span>
+        </button>
+    </div>
 </header>
 
-<section class="banner">
-    <h1>Натуральні фрукти з усього світу</h1>
-    <p>Свіжі, соковиті та корисні фрукти!</p>
-    <a href="#products">
-        <button>Перейти до каталогу</button>
-    </a>
-</section>
+<main class="page">
 
-<div class="container">
-
-    <aside>
-        <h3>Категорії</h3>
-        <ul>
-            {% for category in categories %}
-                <li>{{ category }}</li>
-            {% endfor %}
-        </ul>
-    </aside>
-
-    <section class="products" id="products">
-        <h2>Фрукти</h2>
-        <p>Знайдено {{ products|length }} товарів</p>
-
-        <div class="product-list">
-            {% for product in products %}
-                <div class="product">
-
-                    <img
-                        src="{{ product.image }}"
-                        alt="{{ product.name }}"
-                        width="400"
-                        height="300"
-                        loading="lazy"
-                        decoding="async"
-                        onerror="this.onerror=null; this.src='https://placehold.co/400x300/f0f5eb/173b2b?text=Fruit';"
-                    >
-
-                    <h3>{{ product.name }}</h3>
-
-                    <p>
-                        <strong>{{ product.price }} грн</strong> / кг
-                    </p>
-
-                    <button
-                        onclick="addToCart()"
-                        type="button"
-                    >
-                        Додати в кошик
-                    </button>
-                </div>
-            {% endfor %}
+    <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-content">
+            <span class="eyebrow">СВІЖІСТЬ ЩОДНЯ</span>
+            <h1 id="hero-title">Натуральні фрукти з усього світу</h1>
+            <p>
+                Обирайте улюблені фрукти — свіжі, соковиті
+                та сповнені природного смаку.
+            </p>
+            <a class="primary-button" href="#products">
+                Перейти до каталогу
+            </a>
         </div>
     </section>
 
-</div>
+    <div class="catalog">
 
-<footer style="text-align:center; padding:20px;">
-    © 2026 FruitMarket
-</footer>
+        <aside class="sidebar" id="categories">
+            <h2>Категорії</h2>
+
+
+
+<ul class="category-list">
+    {% for icon, category in categories.items() %}
+    <li>
+        <button
+            class="category-button {% if category == 'Всі фрукти' %}active{% endif %}"
+            type="button"
+            data-category="{{ category }}"
+            title="{{ category }}"
+            aria-label="{{ category }}">
+
+            <span class="category-icon">{{ icon }}</span>
+            <span class="category-text">{{ category }}</span>
+
+        </button>
+    </li>
+    {% endfor %}
+</ul>
+
+
+
+            <div class="sidebar-divider"></div>
+
+            <div class="sidebar-note">
+                Обирайте свіжі фрукти для смачного
+                та збалансованого раціону.
+            </div>
+        </aside>
+
+        <section class="catalog-main" id="products">
+            <div class="catalog-heading">
+                <div>
+                    <h2>Наші фрукти</h2>
+                    <p>
+                        Знайдено
+                        <strong id="visible-count">{{ products|length }}</strong>
+                        товарів
+                    </p>
+                </div>
+
+                <div class="catalog-tools">
+                    <label>
+                        <span hidden>Пошук товарів</span>
+                        <input class="search-input"
+                               id="search"
+                               type="search"
+                               placeholder="Пошук фруктів..."
+                               autocomplete="off">
+                    </label>
+
+                    <label>
+                        <span hidden>Сортування товарів</span>
+                        <select class="sort-select" id="sort">
+                            <option value="default">За замовчуванням</option>
+                            <option value="price-asc">Від дешевих</option>
+                            <option value="price-desc">Від дорогих</option>
+                            <option value="name">За назвою</option>
+                        </select>
+                    </label>
+                </div>
+            </div>
+
+            <div class="product-list" id="product-list">
+                {% for product in products %}
+                <article class="product"
+                         data-name="{{ product.name|lower }}"
+                         data-price="{{ product.price }}"
+                         data-category="{{ product.category|default('') }}">
+
+                    <div class="product-image-wrap">
+                        <img
+                            src="{{ product.image }}"
+                            alt="{{ product.name }}"
+                            width="400"
+                            height="300"
+                            loading="{{ 'eager' if loop.index <= 4 else 'lazy' }}"
+                            decoding="async"
+                            {% if loop.index == 1 %}fetchpriority="high"{% endif %}
+                            onerror="this.onerror=null;this.src='https://placehold.co/400x300/f0f5eb/55745b?text=Fruit';"
+                        >
+                    </div>
+
+                    <div class="product-info">
+                        {% if product.category %}
+                        <div class="product-category">
+                            {{ product.category }}
+                        </div>
+                        {% endif %}
+
+                        <h3>{{ product.name }}</h3>
+
+                        <div class="product-bottom">
+                            <div class="price">
+                                {{ product.price }} грн
+                                <small>/ кг</small>
+                            </div>
+
+                            <button class="add-button"
+                                    type="button"
+                                    aria-label="Додати {{ product.name }} до кошика"
+                                    data-product-name="{{ product.name }}"
+                                    data-product-price="{{ product.price }}">
+                                +
+                            </button>
+                        </div>
+                    </div>
+                </article>
+                {% endfor %}
+            </div>
+
+            <div class="empty-state" id="empty-state">
+                Нічого не знайдено. Спробуйте змінити пошуковий запит.
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        © 2026 FruitMarket · Свіжі фрукти щодня
+    </footer>
+</main>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script>
-    let cartCount = 0;
+    const productList = document.getElementById("product-list");
+    const searchInput = document.getElementById("search");
+    const sortSelect = document.getElementById("sort");
+    const visibleCount = document.getElementById("visible-count");
+    const emptyState = document.getElementById("empty-state");
+    const cartCountElement = document.getElementById("cart-count");
+    const toast = document.getElementById("toast");
 
-    function addToCart() {
-        cartCount++;
-        document.getElementById("cart-count").textContent = cartCount;
+    let activeCategory = "all";
+    let cart = [];
+    let toastTimer;
+
+    function filterProducts() {
+        const query = searchInput.value.trim().toLocaleLowerCase("uk");
+        const cards = [...productList.querySelectorAll(".product")];
+
+        cards.forEach(card => {
+            const name = card.dataset.name || "";
+            const category = card.dataset.category || "";
+
+            const matchesName = name.includes(query);
+            const matchesCategory =
+                activeCategory === "all" ||
+                category === activeCategory;
+
+            card.hidden = !(matchesName && matchesCategory);
+        });
+
+        visibleCount.textContent =
+            cards.filter(card => !card.hidden).length;
+
+        emptyState.style.display =
+            cards.every(card => card.hidden) ? "block" : "none";
+    }
+
+    document.querySelectorAll(".category-button").forEach(button => {
+        button.addEventListener("click", () => {
+            activeCategory = button.dataset.category;
+
+            document.querySelectorAll(".category-button").forEach(item => {
+                item.classList.toggle("active", item === button);
+            });
+
+            filterProducts();
+        });
+    });
+
+    searchInput.addEventListener("input", filterProducts);
+
+    sortSelect.addEventListener("change", () => {
+        const cards = [...productList.querySelectorAll(".product")];
+
+        cards.sort((a, b) => {
+            if (sortSelect.value === "price-asc") {
+                return Number(a.dataset.price) - Number(b.dataset.price);
+            }
+
+            if (sortSelect.value === "price-desc") {
+                return Number(b.dataset.price) - Number(a.dataset.price);
+            }
+
+            if (sortSelect.value === "name") {
+                return a.dataset.name.localeCompare(b.dataset.name, "uk");
+            }
+
+            return 0;
+        });
+
+        cards.forEach(card => productList.appendChild(card));
+        filterProducts();
+    });
+
+    productList.addEventListener("click", event => {
+        const button = event.target.closest(".add-button");
+        if (!button) return;
+
+        cart.push({
+            name: button.dataset.productName,
+            price: Number(button.dataset.productPrice)
+        });
+
+        cartCountElement.textContent = cart.length;
+
+        document.querySelector(".cart-button").setAttribute(
+            "aria-label",
+            `Кошик, товарів: ${cart.length}`
+        );
+
+        showToast(`${button.dataset.productName} додано до кошика`);
+    });
+
+    function showToast(message) {
+        toast.textContent = message;
+        toast.classList.add("visible");
+
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => {
+            toast.classList.remove("visible");
+        }, 2500);
+    }
+
+    function showCart() {
+        if (cart.length === 0) {
+            showToast("Ваш кошик поки порожній");
+            return;
+        }
+
+        const total = cart.reduce((sum, item) => sum + item.price, 0);
+        const names = cart.map(item => item.name).join(", ");
+
+        showToast(`У кошику ${cart.length} товарів на ${total} грн`);
+        console.log("Кошик:", cart, "Товари:", names);
     }
 </script>
 
