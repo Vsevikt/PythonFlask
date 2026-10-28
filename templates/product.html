@@ -1,0 +1,276 @@
+
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ product.title }} — FruitMarket</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f8faf6;
+            color: #263528;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .header {
+            background: #fff;
+            border-bottom: 1px solid #e8eee5;
+            padding: 20px 7%;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .logo {
+            color: #39834a;
+            font-size: 27px;
+            font-weight: 800;
+        }
+
+        .back-link {
+            color: #5c6b5c;
+            font-size: 14px;
+        }
+
+        .back-link:hover {
+            color: #39834a;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 45px auto;
+            padding: 0 22px;
+        }
+
+        .breadcrumbs {
+            color: #829082;
+            font-size: 14px;
+            margin-bottom: 25px;
+        }
+
+        .product-card {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            align-items: center;
+            background: #fff;
+            padding: 35px;
+            border-radius: 22px;
+            box-shadow: 0 8px 35px rgba(38, 70, 38, 0.06);
+        }
+
+        .product-image {
+            background: #f3f8ef;
+            border-radius: 18px;
+            min-height: 380px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 25px;
+        }
+
+        .product-image img {
+            width: 100%;
+            max-height: 360px;
+            object-fit: contain;
+        }
+
+        .product-info {
+            padding: 10px 0;
+        }
+
+        .product-label {
+            display: inline-block;
+            background: #e8f5e8;
+            color: #39834a;
+            padding: 8px 13px;
+            border-radius: 20px;
+            font-size: 13px;
+            margin-bottom: 18px;
+        }
+
+        h1 {
+            font-size: 36px;
+            line-height: 1.2;
+            margin-bottom: 16px;
+        }
+
+        .rating {
+            color: #e8a52b;
+            margin-bottom: 22px;
+            font-size: 16px;
+        }
+
+        .rating span {
+            color: #778177;
+            font-size: 14px;
+            margin-left: 6px;
+        }
+
+        .description {
+            color: #687468;
+            line-height: 1.8;
+            margin-bottom: 24px;
+        }
+
+        .price {
+            color: #39834a;
+            font-size: 34px;
+            font-weight: 800;
+            margin-bottom: 16px;
+        }
+
+        .stock {
+            color: #39834a;
+            font-size: 14px;
+            margin-bottom: 24px;
+        }
+
+        .stock.out {
+            color: #c74b4b;
+        }
+
+        .buy-button {
+            display: inline-block;
+            width: 100%;
+            border: none;
+            border-radius: 12px;
+            padding: 16px 22px;
+            background: #39834a;
+            color: #fff;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.2s;
+        }
+
+        .buy-button:hover {
+            background: #2e6e3d;
+            transform: translateY(-2px);
+        }
+
+        .buy-button:disabled {
+            background: #aab5aa;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 18px;
+            margin-top: 25px;
+            color: #687468;
+            font-size: 13px;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 30px 20px;
+            color: #879187;
+            font-size: 13px;
+        }
+
+        @media (max-width: 700px) {
+            .container {
+                margin: 25px auto;
+            }
+
+            .product-card {
+                grid-template-columns: 1fr;
+                gap: 25px;
+                padding: 20px;
+            }
+
+            .product-image {
+                min-height: 260px;
+            }
+
+            .product-image img {
+                max-height: 250px;
+            }
+
+            h1 {
+                font-size: 28px;
+            }
+
+            .price {
+                font-size: 30px;
+            }
+
+            .header {
+                padding: 18px 22px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <main class="container">
+        <div class="breadcrumbs">
+            <a href="{{ url_for('index') }}">Головна</a>
+            /
+            <span>{{ product.title }}</span>
+        </div>
+
+        <section class="product-card">
+            <div class="product-image">
+                <img
+                    src="{{ product.image }}"
+                    alt="{{ product.title }}"
+                >
+            </div>
+
+            <div class="product-info">
+                <span class="product-label">
+                    Свіжі фрукти
+                </span>
+
+                <h1>{{ product.title }}</h1>
+
+                <div class="rating">
+                    ★★★★★
+                    <span>Рейтинг: {{ product.rating }}</span>
+                </div>
+
+                <p class="description">
+                    Смачний та свіжий продукт для вашого щоденного
+                    раціону. Обирайте якісні фрукти разом із FruitMarket
+                    та насолоджуйтеся природним смаком.
+                </p>
+
+                <div class="price">
+                    {{ product.price }} грн
+                </div>
+
+                <p class="stock">● Є в наявності</p>
+
+                <button class="buy-button">Купити</button>
+
+                <div class="features">
+                    <span>🌿 Якісні продукти</span>
+                    <span>📦 Дбайливе пакування</span>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
